@@ -29,6 +29,11 @@ public class AuthController {
         Map<String, Object> response = new HashMap<>();
         response.put("status", 200);
         response.put("message", message);
+        if (message.equals("User already exists")) {
+            response.put("status", 400);
+        } else if (message.equals("Registered successfully")) {
+            response.put("status", 201);
+        }
 
         return ResponseEntity.ok(response);
     }
