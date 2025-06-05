@@ -14,14 +14,20 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password_hash", nullable = false)
-    private String passwordHash;
-
-    @Column(nullable = false)
-    private String role;
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private OffsetDateTime updatedAt;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive = true;
 
     public User() {
       // default constructor
@@ -29,9 +35,11 @@ public class User {
 
     public User(String username, String passwordHash, String role, OffsetDateTime createdAt) {
         this.username = username;
-        this.passwordHash = passwordHash;
-        this.role = role;
+        this.password = password;
         this.createdAt = createdAt;
+        this.updatedAt = OffsetDateTime.now();
+        this.emailAddress = null; // default value
+        this.isActive = true; // default value
     }
 
     public Long getId() {
@@ -50,20 +58,18 @@ public class User {
         this.username = username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public String getemail_address() {
+        return emailAddress;
     }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public OffsetDateTime getCreatedAt() {
@@ -73,4 +79,17 @@ public class User {
     public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
+    public OffsetDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(OffsetDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+    public boolean isActive() {
+        return isActive;
+    }
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
 }

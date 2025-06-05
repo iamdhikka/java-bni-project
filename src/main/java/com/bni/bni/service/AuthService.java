@@ -29,9 +29,11 @@ public class AuthService {
 
         User user = new User();
         user.setUsername(username);
-        user.setPasswordHash(encoder.encode(password));
-        user.setRole("USER");
+        user.setPassword(encoder.encode(password));
         user.setCreatedAt(OffsetDateTime.now());
+        user.setUpdatedAt(OffsetDateTime.now());
+        user.setEmailAddress(null); // default value
+        user.setActive(true); // default value
         repo.save(user);
 
         return "Registered successfully";
@@ -39,8 +41,8 @@ public class AuthService {
 
     public String login(String username, String password) {
         Optional<User> user = repo.findByUsername(username);
-        if (user.isPresent() && encoder.matches(password, user.get().getPasswordHash())) {
-            return jwtUtil.generateToken(username, user.get().getRole());
+        if (user.isPresent() && encoder.matches(password, user.get().getPassword())) {
+            return jwtUtil.generateToken(username, String.valueOf(user.get().getId()));
         }
 
         return null;
