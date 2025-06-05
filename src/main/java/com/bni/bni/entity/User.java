@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "users")
@@ -19,10 +21,13 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
     private OffsetDateTime createdAt;
+    
 
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", nullable = false)
+    @UpdateTimestamp
     private OffsetDateTime updatedAt;
 
     @Column(name = "email_address")
@@ -35,14 +40,13 @@ public class User {
       // default constructor
     }
 
-    public User(String username, String password, String role, OffsetDateTime createdAt) {
+    public User(String username, String password) {
     this.username = username;
-    this.password = password; 
-    this.createdAt = createdAt;
-    this.updatedAt = OffsetDateTime.now();
+    this.password = password;
     this.emailAddress = null;
     this.isActive = true;
 }
+
 
     public Long getId() {
         return id;
@@ -67,9 +71,10 @@ public class User {
         this.password = password;
     }
 
-    public String getemail_address() {
-        return emailAddress;
-    }
+    public String getEmailAddress() {
+    return emailAddress;
+}
+
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
