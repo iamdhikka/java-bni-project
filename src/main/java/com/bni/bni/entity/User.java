@@ -3,6 +3,8 @@ package com.bni.bni.entity;
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -33,14 +35,14 @@ public class User {
       // default constructor
     }
 
-    public User(String username, String passwordHash, String role, OffsetDateTime createdAt) {
-        this.username = username;
-        this.password = password;
-        this.createdAt = createdAt;
-        this.updatedAt = OffsetDateTime.now();
-        this.emailAddress = null; // default value
-        this.isActive = true; // default value
-    }
+    public User(String username, String password, String role, OffsetDateTime createdAt) {
+    this.username = username;
+    this.password = password; 
+    this.createdAt = createdAt;
+    this.updatedAt = OffsetDateTime.now();
+    this.emailAddress = null;
+    this.isActive = true;
+}
 
     public Long getId() {
         return id;
@@ -91,5 +93,4 @@ public class User {
     public void setActive(boolean active) {
         isActive = active;
     }
-
 }

@@ -43,6 +43,7 @@ public class AuthController {
         String username = body.get("username");
         String password = body.get("password");
         String token = authService.login(username, password);
+        
 
         Map<String, Object> response = new HashMap<>();
         if (token != null) {
