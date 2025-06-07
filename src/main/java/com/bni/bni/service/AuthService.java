@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
+
 @Service
 public class AuthService {
 
@@ -22,18 +23,21 @@ public class AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public String register(String username, String password) {
+    public String register(String username, String emailAddress, String password) {
         if (repo.existsByUsername(username)) {
             return "User already exists";
+        }
+        if (repo.existsByEmailAddress(emailAddress)) {
+            return "Email already exists";
         }
 
         User user = new User();
         user.setUsername(username);
+        user.setEmailAddress(emailAddress);
         user.setPassword(encoder.encode(password));
+        user.setIsActive(true);
         user.setCreatedAt(OffsetDateTime.now());
-        user.setUpdatedAt(OffsetDateTime.now());
-        user.setEmailAddress(null); // default value
-        user.setActive(true); // default value
+        user.setUpdatedAt(null);
         repo.save(user);
 
         return "Registered successfully";
@@ -42,9 +46,9 @@ public class AuthService {
     public String login(String username, String password) {
         Optional<User> user = repo.findByUsername(username);
         if (user.isPresent() && encoder.matches(password, user.get().getPassword())) {
-            return jwtUtil.generateToken(username, String.valueOf(user.get().getId()));
+            // Token generation, adjust as needed (no role in entity)
+            return jwtUtil.generateToken(username, null);
         }
-
         return null;
     }
 }
