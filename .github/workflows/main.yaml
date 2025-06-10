@@ -28,5 +28,5 @@ jobs:
         oc start-build ${{ secrets.OC_BUILD_NAME }} -n ${{ secrets.OC_NAMESPACE }} --wait --follow
 
     - name: Trigger Jenkins Job
-      run: |
-        curl -X POST "http://jenkins-url/job/nama-job/build" --user "${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }}"
+  run: |
+    curl -X POST "https://jenkins-iamdhikka-dev.apps.rm3.7wse.p1.openshiftapps.com/job/iamdhikka-dev/job/iamdhikka-dev-java-bni-project-pipeline/build" --user "${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }}"
