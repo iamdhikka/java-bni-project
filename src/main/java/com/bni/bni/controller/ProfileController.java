@@ -11,13 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/profiles")
+@RequestMapping("/api/profiles")
 public class ProfileController {
 
     @Autowired
     private ProfileRepository profileRepository;
 
     @PostMapping("/profiles")
+
 public ResponseEntity<Profile> createProfile(@RequestBody CreateProfileRequest request) {
     Profile profile = new Profile();
     profile.setFirstName(request.getFirstName());

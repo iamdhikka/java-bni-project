@@ -1,7 +1,6 @@
 package com.bni.bni.entity;
 
 import jakarta.persistence.*;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
