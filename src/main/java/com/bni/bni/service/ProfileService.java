@@ -18,7 +18,7 @@ public class ProfileService {
     }
 
     public Profile getById(Long id) {
-        return repo.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        return repo.findById(id).orElseThrow(() -> new RuntimeException("No Found Profile with ID: " + id));
     }
 
     public Profile save(Profile profile) {
