@@ -17,19 +17,18 @@ public class ProfileController {
     @Autowired
     private ProfileRepository profileRepository;
 
-    @PostMapping("/profiles")
+    @PostMapping
+    public ResponseEntity<Profile> createProfile(@RequestBody CreateProfileRequest request) {
+        Profile profile = new Profile();
+        profile.setFirstName(request.getFirstName());
+        profile.setLastName(request.getLastName());
+        profile.setPlaceOfBirth(request.getPlaceOfBirth());
+        profile.setDateOfBirth(request.getDateOfBirth());
+        profile.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        profile.setUpdateAt(new Timestamp(System.currentTimeMillis()));
+        profile.setUserId(1L); // sementara default
 
-public ResponseEntity<Profile> createProfile(@RequestBody CreateProfileRequest request) {
-    Profile profile = new Profile();
-    profile.setFirstName(request.getFirstName());
-    profile.setLastName(request.getLastName());
-    profile.setPlaceOfBirth(request.getPlaceOfBirth());
-    profile.setDateOfBirth(request.getDateOfBirth());
-    profile.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-    profile.setUpdateAt(new Timestamp(System.currentTimeMillis()));
-    profile.setUserId(1L); // Default, atau ambil dari user login nanti
-
-    Profile saved = profileRepository.save(profile);
-    return ResponseEntity.ok(saved);
-}
+        Profile saved = profileRepository.save(profile);
+        return ResponseEntity.ok(saved);
+    }
 }
