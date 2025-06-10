@@ -30,7 +30,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<Map<String, Object>> register(@RequestBody Map<String, String> body) {
         String username = body.get("username");
-        String emailAddress = body.get("emailAddress"); // tambahkan ini
+        String emailAddress = body.get("email_address"); // tambahkan ini
         String password = body.get("password");
         String message = authService.register(username, emailAddress, password);
 
