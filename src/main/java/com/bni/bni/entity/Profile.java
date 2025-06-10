@@ -1,9 +1,8 @@
 package com.bni.bni.entity;
 
-import java.time.OffsetDateTime;
-import java.util.Date;
-
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Table(name = "profiles")
@@ -16,78 +15,20 @@ public class Profile {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-
-    @Column(name = "created_at")
-    private OffsetDateTime createdAt;
-
-    @Column(name = "update_at")
-    private OffsetDateTime updateAt;
-
+    private Instant createdAt;
+    private Instant updateAt;
     private String placeOfBirth;
 
-    // Getters dan Setters
-
-    public Long getId() {
-        return id;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = Instant.now();
+        this.updateAt = Instant.now();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @PreUpdate
+    protected void onUpdate() {
+        this.updateAt = Instant.now();
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public OffsetDateTime getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(OffsetDateTime updateAt) {
-        this.updateAt = updateAt;
-    }
-
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
-    }
-
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
-    }
+    // Getters and Setters
 }
