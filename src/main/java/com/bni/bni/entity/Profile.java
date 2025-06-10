@@ -31,43 +31,65 @@ public class Profile {
         this.updateAt = Instant.now();
     }
 
+    // Getters
+    public Long getId() {
+        return id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getUpdateAt() {
+        return updateAt;
+    }
+
+    public String getPlaceOfBirth() {
+        return placeOfBirth;
+    }
+
+    // Setters
     public void setUserId(Long userId) {
-    this.userId = userId;
-}
+        this.userId = userId;
+    }
 
-public Long getUserId() {
-    return userId;
-}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-public void setFirstName(String firstName2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setFirstName'");
-}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-public void setPlaceOfBirth(String placeOfBirth2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setPlaceOfBirth'");
-}
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-public void setLastName(String lastName2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setLastName'");
-}
+    public void setCreatedAt(Timestamp timestamp) {
+        this.createdAt = timestamp.toInstant();
+    }
 
-public void setDateOfBirth(Date dateOfBirth2) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setDateOfBirth'");
-}
+    public void setUpdateAt(Timestamp timestamp) {
+        this.updateAt = timestamp.toInstant();
+    }
 
-public void setCreatedAt(Timestamp timestamp) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setCreatedAt'");
-}
-
-public void setUpdateAt(Timestamp timestamp) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setUpdateAt'");
-}
-
-    // Getters and Setters
+    public void setPlaceOfBirth(String placeOfBirth) {
+        this.placeOfBirth = placeOfBirth;
+    }
 }
