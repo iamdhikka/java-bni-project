@@ -21,10 +21,12 @@ public class CreateProfileRequest {
 
     public Date getDateOfBirth() { return dateOfBirth; }
     public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
     public Long getUserId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserId'");
+        return userId;
     }
 
-    
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
