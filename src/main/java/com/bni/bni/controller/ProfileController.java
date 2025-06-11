@@ -28,5 +28,13 @@ public class ProfileController {
 
         Profile saved = profileRepository.save(profile);
         return ResponseEntity.ok(saved);
+ 
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Profile> getProfileById(@PathVariable Long id) {
+        return profileRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }
