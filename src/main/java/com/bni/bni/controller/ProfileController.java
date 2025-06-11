@@ -3,9 +3,7 @@ package com.bni.bni.controller;
 import com.bni.bni.dto.CreateProfileRequest;
 import com.bni.bni.entity.Profile;
 import com.bni.bni.repository.ProfileRepository;
-
 import java.sql.Timestamp;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
