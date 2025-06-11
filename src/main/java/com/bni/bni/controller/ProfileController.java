@@ -26,7 +26,7 @@ public class ProfileController {
         profile.setDateOfBirth(request.getDateOfBirth());
         profile.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         profile.setUpdateAt(new Timestamp(System.currentTimeMillis()));
-        profile.setUserId(1L); // sementara default
+        profile.setUserId(request.getUserId()); 
 
         Profile saved = profileRepository.save(profile);
         return ResponseEntity.ok(saved);

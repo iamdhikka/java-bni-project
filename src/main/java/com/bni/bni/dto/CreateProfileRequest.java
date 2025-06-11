@@ -3,6 +3,7 @@ package com.bni.bni.dto;
 import java.util.Date;
 
 public class CreateProfileRequest {
+    private Long userId;
     private String firstName;
     private String lastName;
     private String placeOfBirth;
@@ -20,4 +21,10 @@ public class CreateProfileRequest {
 
     public Date getDateOfBirth() { return dateOfBirth; }
     public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+    public Long getUserId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUserId'");
+    }
+
+    
 }
