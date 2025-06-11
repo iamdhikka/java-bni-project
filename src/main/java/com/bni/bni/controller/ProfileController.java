@@ -4,6 +4,8 @@ import com.bni.bni.dto.CreateProfileRequest;
 import com.bni.bni.entity.Profile;
 import com.bni.bni.repository.ProfileRepository;
 import java.sql.Timestamp;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,11 +32,10 @@ public class ProfileController {
         return ResponseEntity.ok(saved);
  
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<Profile> getProfileById(@PathVariable Long id) {
-        return profileRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
+   @GetMapping
+        public ResponseEntity<List<Profile>> getAllProfiles() {
+        List<Profile> profiles = profileRepository.findAll();
+        return ResponseEntity.ok(profiles);
 }
+
+    }
