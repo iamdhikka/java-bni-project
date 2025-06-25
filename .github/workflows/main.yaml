@@ -1,45 +1,35 @@
-name: Trigger OpenShift Build
+# name: Trigger OpenShift Build
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  trigger-build:
-    runs-on: ubuntu-latest
+# jobs:
+#   trigger-build:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout source code
-      uses: actions/checkout@v3
+#     steps:
+#     - name: Checkout source code
+#       uses: actions/checkout@v3
 
-    - name: Install OC CLI
-      run: |
-        curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz
-        tar -xzf openshift-client-linux.tar.gz
-        sudo mv oc kubectl /usr/local/bin/
+#     - name: Install OC CLI
+#       run: |
+#         curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz
+#         tar -xzf openshift-client-linux.tar.gz
+#         sudo mv oc kubectl /usr/local/bin/
 
-    - name: Login to OpenShift
-      run: |
-        oc login --token=${{ secrets.OC_TOKEN }} --server=${{ secrets.OC_SERVER }}
+#     - name: Login to OpenShift
+#       run: |
+#         oc login --token=${{ secrets.OC_TOKEN }} --server=${{ secrets.OC_SERVER }}
         
-    - name: Start OpenShift build
-      run: |
-        oc start-build ${{ secrets.OC_BUILD_NAME }} -n ${{ secrets.OC_NAMESPACE }} --wait --follow
+#     - name: Start OpenShift build
+#       run: |
+#         oc start-build ${{ secrets.OC_BUILD_NAME }} -n ${{ secrets.OC_NAMESPACE }} --wait --follow
 
-    - name: Trigger Jenkins Job
-      run: |
-       curl -X POST "https://jenkins-iamdhikka-dev.apps.rm3.7wse.p1.openshiftapps.com/job/iamdhikka-dev/job/iamdhikka-dev-java-bni-project-pipeline/build?token=trigger123"
+#     - name: Trigger Jenkins Job
+#       run: |
+#        curl -X POST "https://jenkins-iamdhikka-dev.apps.rm3.7wse.p1.openshiftapps.com/job/iamdhikka-dev/job/iamdhikka-dev-java-bni-project-pipeline/build?token=trigger123"
 
 
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Send Telegram Notification
-        run: |
-          curl -X POST "https://api.telegram.org/bot7987657062:AAGtePd9EjhcahKIW6o_8yGNS1Fd2ZjmM9k/sendMessage" \
-            -d chat_id=7229658409 \
-            -d text="🚨 Merge to Main/Master Branch 🚨\nA merge has been made to the main/master branch. Please review the changes!"
+  
